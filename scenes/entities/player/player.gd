@@ -31,6 +31,13 @@ func movement_loop() -> void:
 	set_velocity(motion)
 	move_and_slide()
 	
+	# flip sprite
+	if state == State.IDLE or state == State.RUN:
+		if move_dir.x < -0.01:
+			$Sprite2D.flip_h = true
+		elif move_dir.x > 0.01:
+			$Sprite2D.flip_h = false
+
 	if motion != Vector2.ZERO and state == State.IDLE:
 		state = State.RUN
 		update_animation()
